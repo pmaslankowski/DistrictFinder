@@ -13,13 +13,15 @@ public class DistrictsRepository {
     public DistrictsRepository(DistrictsRepositoryLoader loader) {
         this.repository = loader.getRepository();
     }
-
-    public void load(String pathToDirectory) {
-        
-    }
-
-    public District get(String street, int number) {
-        return null;
+    
+    public District get(String street, int number) throws StreetNotFoundException {
+        List<DistrictEntry> candidatingDistricts = repository.get(street);
+        if (candidatingDistricts == null)
+            throw new StreetNotFoundException("Street: " + street + " not found in districts database.");
+        for (DistrictEntry districtEntry : candidatingDistricts)
+            if (districtEntry.containsNumber(number))
+                return districtEntry.getDistrict();
+        throw new StreetNotFoundException(String.format("Number: %d is not assigned to street: %s", number, street));
     }
 
     @Override
