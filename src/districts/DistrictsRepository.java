@@ -13,7 +13,7 @@ public class DistrictsRepository {
     public District get(String street, int number) throws StreetNotFoundException {
         List<DistrictEntry> candidatingDistricts = repository.get(street);
         if (candidatingDistricts == null)
-            throw new StreetNotFoundException("Street: " + street + " not found in districts database.");
+            throw new StreetNotFoundException("Street: " + street + " not found in districts repository.");
         for (DistrictEntry districtEntry : candidatingDistricts)
             if (districtEntry.containsNumber(number))
                 return districtEntry.getDistrict();
