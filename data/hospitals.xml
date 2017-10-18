@@ -1,0 +1,6 @@
+<hospital>
+	<id>TEST_HOSPITAL1</id>
+	<name>Szpital testowy</name>
+	<address>Testowa 5</address>
+	<phone>123-456-789</phone>
+</hospital>
