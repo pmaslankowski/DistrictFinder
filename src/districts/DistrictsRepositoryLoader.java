@@ -40,6 +40,7 @@ public class DistrictsRepositoryLoader {
 
         for(File districtFile : districtFiles) {
             if(districtFile.isFile()) {
+                currentFile = districtFile.getName();
                 try (InputStream districtInputStream = Files.newInputStream(Paths.get(districtFile.getPath()))) {
                     loadDistrict(districtInputStream, docBuilder);
                 } catch (IOException e) {
@@ -98,21 +99,29 @@ public class DistrictsRepositoryLoader {
             addToRepository(street, new DistrictEntry(district, DistrictEntry.EntryMode.ALL_NUMBERS, null));
         else
             addToRepository(street, new DistrictEntry(district, DistrictEntry.EntryMode.SPECIFIC_NUMBERS,
-                    createNumbersSet(evenStart, evenEnd, oddStart, oddEnd, additional)));
+                    createNumbersSet(street, evenStart, evenEnd, oddStart, oddEnd, additional)));
     }
 
-    private void addToRepository(String street, DistrictEntry entry) {
+    private void addToRepository(String street, DistrictEntry entry) throws DistrictLoadingException {
         List<DistrictEntry> currentEntry = repository.getOrDefault(street, new LinkedList<DistrictEntry>());
+        if(entry.getMode() == DistrictEntry.EntryMode.ALL_NUMBERS && currentEntry.size() > 0) {
+            String msg = String.format(
+                    "Unconsistient district database: %s. Same house number belongs to many districts:\n" +
+                    "street: %s, file: %s", street, currentFile);
+            throw new DistrictLoadingException(msg);
+        }
         currentEntry.add(entry);
         repository.put(street, currentEntry);
     }
 
-    private Set<Integer> createNumbersSet(int evenStart, int evenEnd, int oddStart, int oddEnd, List<Integer> additional)
+    private Set<Integer> createNumbersSet(String street, int evenStart, int evenEnd, int oddStart, int oddEnd, List<Integer> additional)
             throws DistrictLoadingException {
         if((evenStart != -1 && evenEnd == -1) || (evenStart == -1 && evenEnd != -1))
-            throw new DistrictLoadingException("Wrong configuration of even range");
+            throw new DistrictLoadingException(
+                    String.format("Wrong configuration of even range:\n street: %s, file: %s", street, currentFile));
         if((oddStart != -1 && oddEnd == -1) || (oddStart == -1 && oddEnd != -1))
-            throw new DistrictLoadingException("Wrong configuration of odd range.");
+            throw new DistrictLoadingException(
+                    String.format("Wrong configuration of odd range:\n street: %s, file: %s", street, currentFile));
 
         List<Integer> evenNumbers = new LinkedList<>();
         List<Integer> oddNumbers = new LinkedList<>();
@@ -133,5 +142,6 @@ public class DistrictsRepositoryLoader {
     }
 
     private String directoryPath;
+    private String currentFile;
     private Map<String, List<DistrictEntry>> repository;
 }

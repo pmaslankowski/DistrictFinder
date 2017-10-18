@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87e4411c-6300-4223-be7b-0fc2e4646d9f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/DistrictLoadingException.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/District.java" afterPath="$PROJECT_DIR$/src/districts/District.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/DistrictEntry.java" afterPath="$PROJECT_DIR$/src/districts/DistrictEntry.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/DistrictsRepository.java" afterPath="$PROJECT_DIR$/src/districts/DistrictsRepository.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/DistrictsRepositoryLoader.java" afterPath="$PROJECT_DIR$/src/districts/DistrictsRepositoryLoader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/StreetNotFoundException.java" afterPath="$PROJECT_DIR$/src/districts/exceptions/StreetNotFoundException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Application.java" afterPath="$PROJECT_DIR$/src/Application.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/districts/DistrictEntry.java" afterPath="$PROJECT_DIR$/src/districts/DistrictEntry.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/districts/DistrictsRepositoryLoader.java" afterPath="$PROJECT_DIR$/src/districts/DistrictsRepositoryLoader.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,9 +19,11 @@
       <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="24" column="57" lean-forward="true" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
-              <folding />
+            <state relative-caret-position="141">
+              <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -34,7 +31,7 @@
       <file leaf-file-name="DistrictsRepository.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/districts/DistrictsRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
+            <state relative-caret-position="282">
               <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -58,6 +55,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Hospital.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hospitals/Hospital.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="DistrictLoadingException.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/districts/exceptions/DistrictLoadingException.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -71,15 +78,15 @@
       <file leaf-file-name="DistrictsRepositoryLoader.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/districts/DistrictsRepositoryLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="470">
+              <caret line="130" column="51" lean-forward="true" selection-start-line="130" selection-start-column="51" selection-end-line="130" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#665#666#0" expanded="true" />
                 <element signature="e#715#716#0" expanded="true" />
-                <element signature="e#2020#2021#0" expanded="true" />
-                <element signature="e#2053#2054#0" expanded="true" />
-                <element signature="e#5650#5659#0" expanded="true" />
+                <element signature="e#2074#2075#0" expanded="true" />
+                <element signature="e#2107#2108#0" expanded="true" />
+                <element signature="e#6293#6302#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,23 +95,15 @@
       <file leaf-file-name="DistrictEntry.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/districts/DistrictEntry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="17" column="44" lean-forward="false" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+            <state relative-caret-position="1034">
+              <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#314#315#0" expanded="true" />
                 <element signature="e#345#346#0" expanded="true" />
+                <element signature="e#550#551#0" expanded="true" />
+                <element signature="e#577#578#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="District.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/districts/District.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -152,19 +151,20 @@
         <option value="$PROJECT_DIR$/src/DistrictsRepositoryLoader.java" />
         <option value="$PROJECT_DIR$/src/StreetNotFoundException.java" />
         <option value="$PROJECT_DIR$/src/DistrictsRepository.java" />
-        <option value="$PROJECT_DIR$/src/Application.java" />
         <option value="$PROJECT_DIR$/src/exceptions/StreetNotFoundException.java" />
         <option value="$PROJECT_DIR$/src/exceptions/DistrictLoadingException.java" />
         <option value="$PROJECT_DIR$/src/District.java" />
         <option value="$PROJECT_DIR$/src/DistrictEntry.java" />
         <option value="$PROJECT_DIR$/src/districts/District.java" />
         <option value="$PROJECT_DIR$/src/districts/DistrictsRepository.java" />
-        <option value="$PROJECT_DIR$/src/districts/DistrictsRepositoryLoader.java" />
-        <option value="$PROJECT_DIR$/src/districts/DistrictEntry.java" />
         <option value="$PROJECT_DIR$/src/districts/DistrictLoadingException.java" />
         <option value="$PROJECT_DIR$/src/districts/StreetNotFoundException.java" />
         <option value="$PROJECT_DIR$/src/districts/exceptions/DistrictLoadingException.java" />
         <option value="$PROJECT_DIR$/src/districts/exceptions/StreetNotFoundException.java" />
+        <option value="$PROJECT_DIR$/src/Application.java" />
+        <option value="$PROJECT_DIR$/src/hospitals/Hospital.java" />
+        <option value="$PROJECT_DIR$/src/districts/DistrictEntry.java" />
+        <option value="$PROJECT_DIR$/src/districts/DistrictsRepositoryLoader.java" />
       </list>
     </option>
   </component>
@@ -202,6 +202,17 @@
             <path>
               <item name="DistrictFinder" type="b2602c69:ProjectViewProjectNode" />
               <item name="DistrictFinder" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DistrictFinder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistrictFinder" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="districts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DistrictFinder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistrictFinder" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -209,13 +220,6 @@
               <item name="DistrictFinder" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="districts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DistrictFinder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DistrictFinder" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="districts" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -428,7 +432,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
           <caret line="5" column="73" lean-forward="false" selection-start-line="5" selection-start-column="73" selection-end-line="5" selection-end-column="73" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -500,35 +506,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainForm.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/districts/old_town.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="81" column="24" lean-forward="false" selection-start-line="81" selection-start-column="24" selection-end-line="81" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/districts/swidnica_suburbs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="3" column="47" lean-forward="false" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="24" column="57" lean-forward="true" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/districts/District.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
@@ -537,26 +514,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/districts/DistrictsRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/districts/exceptions/DistrictLoadingException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="94">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#196#197#0" expanded="true" />
-            <element signature="e#252#253#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hospitals/Hospital.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/districts/DistrictEntry.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="17" column="44" lean-forward="false" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+        <state relative-caret-position="1034">
+          <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#314#315#0" expanded="true" />
             <element signature="e#345#346#0" expanded="true" />
+            <element signature="e#550#551#0" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -572,25 +565,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/districts/exceptions/DistrictLoadingException.java">
+    <entry file="file://$PROJECT_DIR$/src/districts/DistrictsRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="282">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#196#197#0" expanded="true" />
+            <element signature="e#252#253#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainForm.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/districts/old_town.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3123">
+          <caret line="81" column="24" lean-forward="false" selection-start-line="81" selection-start-column="24" selection-end-line="81" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/districts/swidnica_suburbs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="3" column="47" lean-forward="false" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/districts/DistrictsRepositoryLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="470">
+          <caret line="130" column="51" lean-forward="true" selection-start-line="130" selection-start-column="51" selection-end-line="130" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#665#666#0" expanded="true" />
             <element signature="e#715#716#0" expanded="true" />
-            <element signature="e#2020#2021#0" expanded="true" />
-            <element signature="e#2053#2054#0" expanded="true" />
-            <element signature="e#5650#5659#0" expanded="true" />
+            <element signature="e#2074#2075#0" expanded="true" />
+            <element signature="e#2107#2108#0" expanded="true" />
+            <element signature="e#6293#6302#0" expanded="true" />
           </folding>
         </state>
       </provider>

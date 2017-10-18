@@ -19,6 +19,10 @@ class DistrictEntry {
         return mode == EntryMode.ALL_NUMBERS || numbers.contains(houseNumber); // take care: short-circuiting 
     }
 
+    public EntryMode getMode() {
+        return mode;
+    }
+
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(",", "{", "}");
