@@ -1,12 +1,8 @@
-import org.w3c.dom.*;
-import org.xml.sax.SAXException;
+package districts;
 
-import javax.xml.parsers.DocumentBuilder;
-import java.io.IOException;
-import java.io.InputStream;
+import districts.exceptions.StreetNotFoundException;
+
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class DistrictsRepository {
 

@@ -1,3 +1,5 @@
+package districts;
+
 public class District {
     public String name;
     public String label;

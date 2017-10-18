@@ -1,3 +1,5 @@
+package districts;
+
 import java.util.Set;
 import java.util.StringJoiner;
 
@@ -36,7 +38,7 @@ class DistrictEntry {
     private EntryMode mode;
     private Set<Integer> numbers;
     
-    /* Flag indicating if DistrictEntry concerns all local numbers on given street
+    /* Flag indicating if districts.DistrictEntry concerns all local numbers on given street
           or only specific set of local numbers on that street: */
     enum EntryMode { ALL_NUMBERS, SPECIFIC_NUMBERS }
 }
