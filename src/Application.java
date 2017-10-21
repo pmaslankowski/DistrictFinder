@@ -15,6 +15,7 @@ public class Application {
         frame.pack();
         frame.setVisible(true);
 
+        testDistrictsRepository();
         testHospitalsRepository();
     }
 
@@ -25,7 +26,8 @@ public class Application {
             DistrictsRepository repo = new DistrictsRepository(loader);
             System.out.println(repo);
             System.out.println();
-            System.out.println(repo.get("Zdrowa", 20));
+            System.out.println(repo.get("Zdrowa", 20).label);
+            System.out.println(repo.get("Podwale", 28).label);
         } catch (Exception e) {
             e.printStackTrace();
         }

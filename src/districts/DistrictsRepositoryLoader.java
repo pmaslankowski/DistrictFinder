@@ -44,7 +44,8 @@ public class DistrictsRepositoryLoader {
                 try (InputStream districtInputStream = Files.newInputStream(Paths.get(districtFile.getPath()))) {
                     loadDistrict(districtInputStream, docBuilder);
                 } catch (IOException e) {
-                    throw new DistrictLoadingException("Error during opening " + districtFile.getPath() + " file.\n" + e.getMessage());
+                    throw new DistrictLoadingException("Error during opening " + districtFile.getPath() +
+                            " file.\n" + e.getMessage());
                 }
             }
         }
@@ -81,11 +82,15 @@ public class DistrictsRepositoryLoader {
         String evenEndStr = streetEl.getAttribute("even-end");
         String oddStartStr = streetEl.getAttribute("odd-start");
         String oddEndStr = streetEl.getAttribute("odd-end");
+        String startStr = streetEl.getAttribute("start");
+        String endStr = streetEl.getAttribute("end");
         String additionalStr = streetEl.getAttribute("additional");
         int evenStart = evenStartStr.isEmpty() ? -1 : Integer.parseInt(evenStartStr);
         int evenEnd = evenEndStr.isEmpty() ? -1 : Integer.parseInt(evenEndStr);
         int oddStart = oddStartStr.isEmpty() ? -1 : Integer.parseInt(oddStartStr);
         int oddEnd = oddEndStr.isEmpty() ? -1 : Integer.parseInt(oddEndStr);
+        int start = startStr.isEmpty() ? -1 : Integer.parseInt(startStr);
+        int end = endStr.isEmpty() ? -1 : Integer.parseInt(endStr);
         List<String> additional_splited;
         if(additionalStr.isEmpty())
             additional_splited = new LinkedList<>();
@@ -95,11 +100,12 @@ public class DistrictsRepositoryLoader {
                 .map(number -> Integer.parseInt(number.trim()))
                 .collect(Collectors.toList());
 
-        if(evenStart == -1 && evenEnd == -1 && oddStart == -1 && oddEnd == -1 && additional.isEmpty())
+        if(evenStart == -1 && evenEnd == -1 && oddStart == -1 && oddEnd == -1 && start == -1 && end == -1
+                && additional.isEmpty())
             addToRepository(street, new DistrictEntry(district, DistrictEntry.EntryMode.ALL_NUMBERS, null));
         else
             addToRepository(street, new DistrictEntry(district, DistrictEntry.EntryMode.SPECIFIC_NUMBERS,
-                    createNumbersSet(street, evenStart, evenEnd, oddStart, oddEnd, additional)));
+                    createNumbersSet(street, evenStart, evenEnd, oddStart, oddEnd, start, end, additional)));
     }
 
     private void addToRepository(String street, DistrictEntry entry) throws DistrictLoadingException {
@@ -114,7 +120,9 @@ public class DistrictsRepositoryLoader {
         repository.put(street, currentEntry);
     }
 
-    private Set<Integer> createNumbersSet(String street, int evenStart, int evenEnd, int oddStart, int oddEnd, List<Integer> additional)
+    private Set<Integer> createNumbersSet(String street, int evenStart, int evenEnd,
+                                          int oddStart, int oddEnd, int start, int end,
+                                          List<Integer> additional)
             throws DistrictLoadingException {
         if((evenStart != -1 && evenEnd == -1) || (evenStart == -1 && evenEnd != -1))
             throw new DistrictLoadingException(
@@ -122,10 +130,14 @@ public class DistrictsRepositoryLoader {
         if((oddStart != -1 && oddEnd == -1) || (oddStart == -1 && oddEnd != -1))
             throw new DistrictLoadingException(
                     String.format("Wrong configuration of odd range:\n street: %s, file: %s", street, currentFile));
+        if((start != -1 && end == -1))
+            throw new DistrictLoadingException(
+                    String.format("Wrong configuration of range:\n street: %s, file: %s", street, currentFile));
 
         List<Integer> evenNumbers = new LinkedList<>();
         List<Integer> oddNumbers = new LinkedList<>();
-        Set<Integer> result = new HashSet<Integer>();
+        List<Integer> otherNumbers = new LinkedList<>();
+        Set<Integer> result = new HashSet<>();
         if(evenStart != -1 && evenEnd != -1)
             evenNumbers = IntStream.rangeClosed(evenStart, evenEnd)
                     .filter(n -> n % 2 == 0)
@@ -134,9 +146,11 @@ public class DistrictsRepositoryLoader {
             oddNumbers = IntStream.rangeClosed(oddStart, oddEnd)
                     .filter(n -> n % 2 == 1)
                     .boxed().collect(Collectors.toList());
-
+        if(start != -1 && end != -1)
+            otherNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
         result.addAll(evenNumbers);
         result.addAll(oddNumbers);
+        result.addAll(otherNumbers);
         result.addAll(additional);
         return result;
     }
