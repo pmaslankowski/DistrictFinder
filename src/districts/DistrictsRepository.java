@@ -1,16 +1,32 @@
 package districts;
 
+import districts.exceptions.InvalidAddressFormatException;
 import districts.exceptions.StreetNotFoundException;
+import org.omg.CORBA.DynAnyPackage.Invalid;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DistrictsRepository {
 
     public DistrictsRepository(DistrictsRepositoryLoader loader) {
+        parsePattern = Pattern.compile("(?<street>([a-zA-Z]|\\s)+)(?<number>(\\d+))");
         this.repository = loader.getRepository();
     }
-    
-    public District get(String street, int number) throws StreetNotFoundException {
+
+    public District get(String address) throws StreetNotFoundException, InvalidAddressFormatException {
+        Matcher matcher = parsePattern.matcher(address.toLowerCase());
+        if(matcher.matches()) {
+            String street = matcher.group("street").trim();
+            int number = Integer.parseInt(matcher.group("number"));
+            return get(street, number);
+        } else {
+            throw new InvalidAddressFormatException("Invalid adress format: " + address);
+        }
+    }
+
+    private District get(String street, int number) throws StreetNotFoundException {
         List<DistrictEntry> candidatingDistricts = repository.get(street);
         if (candidatingDistricts == null)
             throw new StreetNotFoundException("Street: " + street + " not found in districts repository.");
@@ -29,4 +45,5 @@ public class DistrictsRepository {
     }
     
     private Map<String, List<DistrictEntry>> repository;
+    private Pattern parsePattern;
 }

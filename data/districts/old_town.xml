@@ -1,4 +1,5 @@
 <district name="old_town" label="Stare Miasto">
+	<hospital>TEST_HOSPITAL1</hospital>
 	<street>Bernardyńska</street>
 	<street>Białoskórnicza</street>
 	<street>Biskupia</street>

@@ -73,7 +73,8 @@ public class DistrictsRepositoryLoader {
         Element districtEl = (Element) document.getElementsByTagName("district").item(0);
         String districtName = districtEl.getAttribute("name");
         String districtLabel = districtEl.getAttribute("label");
-        return new District(districtName, districtLabel);
+        String hospitalId = districtEl.getElementsByTagName("hospital").item(0).getTextContent();
+        return new District(districtName, districtLabel, hospitalId);
     }
 
     private void loadStreet(Element streetEl, District district) throws DistrictLoadingException {
@@ -108,7 +109,8 @@ public class DistrictsRepositoryLoader {
                     createNumbersSet(street, evenStart, evenEnd, oddStart, oddEnd, start, end, additional)));
     }
 
-    private void addToRepository(String street, DistrictEntry entry) throws DistrictLoadingException {
+    private void addToRepository(String str, DistrictEntry entry) throws DistrictLoadingException {
+        String street = str.toLowerCase();
         List<DistrictEntry> currentEntry = repository.getOrDefault(street, new LinkedList<DistrictEntry>());
         if(entry.getMode() == DistrictEntry.EntryMode.ALL_NUMBERS && currentEntry.size() > 0) {
             String msg = String.format(
