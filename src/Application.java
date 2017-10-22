@@ -13,6 +13,8 @@ import hospitals.exceptions.HospitalsLoadingException;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class Application {
     public Application() {
@@ -111,11 +113,12 @@ public class Application {
     }
 
     private void loadDistrictsRepository() {
-        DistrictsRepositoryLoader loader = new DistrictsRepositoryLoader("data/districts/");
         try {
+            URI districtsPath = this.getClass().getResource("data/districts/").toURI();
+            DistrictsRepositoryLoader loader = new DistrictsRepositoryLoader(districtsPath);
             loader.load();
             districtsRepository = new DistrictsRepository(loader);
-        } catch (DistrictLoadingException e) {
+        } catch (DistrictLoadingException | URISyntaxException e) {
             JOptionPane.showMessageDialog(
                     frame,
                     "Wystąpił błąd podczas ładowania repozytorium dzielnic. Program zakończy swoje działanie.\n" +
@@ -127,12 +130,13 @@ public class Application {
         }
     }
 
-    private void loadHospitalsRepository() {
-        HospitalsRepositoryLoader loader = new HospitalsRepositoryLoader("data/hospitals.xml");
+    private void loadHospitalsRepository() { ;
         try {
+            URI hospitalsPath = this.getClass().getResource("data/hospitals.xml").toURI();
+            HospitalsRepositoryLoader loader = new HospitalsRepositoryLoader(hospitalsPath);
             loader.load();
             hospitalsRepository = new HospitalsRepository(loader);
-        } catch (HospitalsLoadingException e) {
+        } catch (HospitalsLoadingException | URISyntaxException e) {
             JOptionPane.showMessageDialog(
                     frame,
                     "Wystąpił błąd podczas ładowania repozytorium szpitali. Program zakończy swoje działanie.\n" +

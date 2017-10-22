@@ -11,13 +11,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class HospitalsRepositoryLoader {
-    public HospitalsRepositoryLoader(String path) {
+    public HospitalsRepositoryLoader(URI path) {
         this.path = path;
     }
 
@@ -66,6 +67,6 @@ public class HospitalsRepositoryLoader {
         repository.put(id, new Hospital(id, name, address, phone));
     }
     
-    private String path;
+    private URI path;
     private Map<String, Hospital> repository;
 }

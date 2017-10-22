@@ -12,6 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class DistrictsRepositoryLoader {
-    public DistrictsRepositoryLoader(String directoryPath) {
+    public DistrictsRepositoryLoader(URI directoryPath) {
         this.directoryPath = directoryPath;
     }
 
@@ -157,7 +158,7 @@ public class DistrictsRepositoryLoader {
         return result;
     }
 
-    private String directoryPath;
+    private URI directoryPath;
     private String currentFile;
     private Map<String, List<DistrictEntry>> repository;
 }
