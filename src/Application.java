@@ -20,6 +20,7 @@ import java.net.URISyntaxException;
 
 public class Application {
     public Application() {
+        setLookAndFeel();
         createWindow();
         loadHospitalsRepository();
         loadDistrictsRepository();
@@ -106,6 +107,19 @@ public class Application {
         worker.start();
     }
 
+    private void setLookAndFeel() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException |
+                 IllegalAccessException | UnsupportedLookAndFeelException e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Wystąpił błąd podczas wybierania natywnej skórki systemu.\nSzczegóły:" + e.getMessage(),
+                    "Błąd",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void createWindow() {
         JFrame frame = new JFrame("Wyszukiwanie osiedli i ośrodków POZ");
         form = new MainForm(this);
