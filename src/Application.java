@@ -12,6 +12,8 @@ import hospitals.exceptions.HospitalsLoadingException;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -86,6 +88,7 @@ public class Application {
                             "Informacja",
                             JOptionPane.INFORMATION_MESSAGE
                     );
+                    form.getResultTable().setModel(emptyModel);
                 } catch (InvalidAddressFormatException e) {
                     JOptionPane.showMessageDialog(
                             frame,
@@ -93,6 +96,7 @@ public class Application {
                             "Informacja",
                             JOptionPane.INFORMATION_MESSAGE
                     );
+                    form.getResultTable().setModel(emptyModel);
                 } catch (HospitalNotFoundException e) {
                     JOptionPane.showMessageDialog(
                             frame,
@@ -101,6 +105,7 @@ public class Application {
                             "Błąd",
                             JOptionPane.ERROR_MESSAGE
                     );
+                    form.getResultTable().setModel(emptyModel);
                 }
             }
         });
@@ -170,4 +175,20 @@ public class Application {
     private JFrame frame;
     private DistrictsRepository districtsRepository;
     private HospitalsRepository hospitalsRepository;
+    private TableModel emptyModel = new AbstractTableModel() {
+        @Override
+        public int getRowCount() {
+            return 1;
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 1;
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            return "BRAK WYNIKÓW";
+        }
+    };
 }
