@@ -7,6 +7,7 @@ public class MainForm {
     private JButton searchButton;
     private JTextField addressText;
     private JTable resultTable;
+    private JLabel resultLabel;
     private Application app;
 
     public MainForm(Application app) {

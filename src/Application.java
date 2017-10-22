@@ -37,63 +37,65 @@ public class Application {
         }
 
         Thread worker = new Thread(() -> {
-            try {
-                District district = districtsRepository.get(address);
-                Hospital hospital = hospitalsRepository.get(district.hospitalId);
-                form.getResultTable().setModel(new AbstractTableModel() {
-                    private String[][] data =
-                            {
-                                    {"Adres pacjenta: ", address},
-                                    {"Osiedle: ", district.label},
-                                    {"Nazwa przypisanego szpitala:", hospital.getName()},
-                                    {"Adres szpitala:", hospital.getAddress()},
-                                    {"Telefon: ", hospital.getPhone()},
-                            };
+            synchronized(this) {
+                try {
+                    District district = districtsRepository.get(address);
+                    Hospital hospital = hospitalsRepository.get(district.hospitalId);
+                    form.getResultTable().setModel(new AbstractTableModel() {
+                        private String[][] data =
+                                {
+                                        {"Adres pacjenta: ", address},
+                                        {"Osiedle: ", district.label},
+                                        {"Nazwa przypisanego szpitala:", hospital.getName()},
+                                        {"Adres szpitala:", hospital.getAddress()},
+                                        {"Telefon: ", hospital.getPhone()},
+                                };
 
-                    @Override
-                    public int getColumnCount() {
-                        return data[0].length;
-                    }
+                        @Override
+                        public int getColumnCount() {
+                            return data[0].length;
+                        }
 
-                    @Override
-                    public int getRowCount() {
-                        return data.length;
-                    }
+                        @Override
+                        public int getRowCount() {
+                            return data.length;
+                        }
 
-                    @Override
-                    public Object getValueAt(int row, int col) {
-                        return data[row][col];
-                    }
-                    
-                    @Override
-                    public Class<?> getColumnClass(int col) {
-                        return data[0][col].getClass();
-                    }
-                });
-                
-            } catch (StreetNotFoundException e) {
-                JOptionPane.showMessageDialog(
-                        frame,
-                        "Nie znaleziono adresu \"" + address + "\" w repozytorium.\n" +
-                                "Szczegóły:\n" + e.getMessage(),
-                        "Informacja",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            } catch (InvalidAddressFormatException e) {
-                JOptionPane.showMessageDialog(
-                        frame,
-                        "Niepoprawny format adresu. Poprawny format:\n <nazwa ulicy> <numer domu>",
-                        "Informacja",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            } catch (HospitalNotFoundException e) {
-                JOptionPane.showMessageDialog(
-                        frame,
-                        "Nie znaleziono przypisanego szpitala. " +
-                                "Najprawdopodobniej wewnętrzne pliki .xml programu są uszkodzone.",
-                        "Błąd",
-                        JOptionPane.ERROR_MESSAGE
-                );    
+                        @Override
+                        public Object getValueAt(int row, int col) {
+                            return data[row][col];
+                        }
+
+                        @Override
+                        public Class<?> getColumnClass(int col) {
+                            return data[0][col].getClass();
+                        }
+                    });
+
+                } catch (StreetNotFoundException e) {
+                    JOptionPane.showMessageDialog(
+                            frame,
+                            "Nie znaleziono adresu \"" + address + "\" w repozytorium.\n" +
+                                    "Szczegóły:\n" + e.getMessage(),
+                            "Informacja",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } catch (InvalidAddressFormatException e) {
+                    JOptionPane.showMessageDialog(
+                            frame,
+                            "Niepoprawny format adresu. Poprawny format:\n <nazwa ulicy> <numer domu>",
+                            "Informacja",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } catch (HospitalNotFoundException e) {
+                    JOptionPane.showMessageDialog(
+                            frame,
+                            "Nie znaleziono przypisanego szpitala. " +
+                                    "Najprawdopodobniej wewnętrzne pliki .xml programu są uszkodzone.",
+                            "Błąd",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
             }
         });
         worker.start();
