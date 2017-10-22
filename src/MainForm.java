@@ -19,10 +19,25 @@ public class MainForm {
                 app.resolveStreet(addressText.getText());
             }
         });
+        addressText.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.resolveStreet(addressText.getText());
+            }
+        });
+        InputMap inputMap = panel1.getInputMap();
+        inputMap.put(KeyStroke.getKeyStroke("ENTER"), "enter");
+        panel1.getActionMap().put("enter", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.resolveStreet(addressText.getText());
+            }
+        });
     }
 
     public JPanel getView() {
         return panel1;
     }
+    public JTextField getAddressText() { return addressText; }
     public JTable getResultTable() { return resultTable; }
 }

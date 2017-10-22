@@ -13,6 +13,8 @@ import hospitals.exceptions.HospitalsLoadingException;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -38,8 +40,9 @@ public class Application {
             return;
         }
 
+        Object that = this;
         Thread worker = new Thread(() -> {
-            synchronized(this) {
+            synchronized(that) {
                 try {
                     District district = districtsRepository.get(address);
                     Hospital hospital = hospitalsRepository.get(district.hospitalId);
@@ -147,7 +150,7 @@ public class Application {
             System.exit(-1);
         }
     }
-
+    
     private MainForm form;
     private JFrame frame;
     private DistrictsRepository districtsRepository;
