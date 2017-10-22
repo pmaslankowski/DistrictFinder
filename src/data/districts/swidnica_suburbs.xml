@@ -1,5 +1,5 @@
 <district name="swidnica_suburbs" label="Przedmieście Świdnickie">
-	<hospital>TEST_HOSPITAL1</hospital>
+	<hospital>WOJ_SZP_SPEC</hospital>
 	<street>Bałuckiego</street>
 	<street>Czysta</street>
 	<street odd-start="1" odd-end="31">Dworcowa</street>
