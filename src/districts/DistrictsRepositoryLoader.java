@@ -70,12 +70,18 @@ public class DistrictsRepositoryLoader {
         }
     }
 
-    private District parseDistrict(Document document) {
-        Element districtEl = (Element) document.getElementsByTagName("district").item(0);
-        String districtName = districtEl.getAttribute("name");
-        String districtLabel = districtEl.getAttribute("label");
-        String hospitalId = districtEl.getElementsByTagName("hospital").item(0).getTextContent();
-        return new District(districtName, districtLabel, hospitalId);
+    private District parseDistrict(Document document) throws DistrictLoadingException {
+        try {
+            Element districtEl = (Element) document.getElementsByTagName("district").item(0);
+            String districtName = districtEl.getAttribute("name");
+            String districtLabel = districtEl.getAttribute("label");
+            String hospitalId = districtEl.getElementsByTagName("hospital").item(0).getTextContent();
+            return new District(districtName, districtLabel, hospitalId);
+        } catch (NullPointerException e) {
+            String msg = String.format("Błąd podczas ładowania repozytorium: " +
+                    "brak jednego z tagów <district> lub <hospital>.\nPlik: %s", currentFile);
+            throw new DistrictLoadingException(msg);
+        }
     }
 
     private void loadStreet(Element streetEl, District district) throws DistrictLoadingException {
