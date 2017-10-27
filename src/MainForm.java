@@ -13,6 +13,7 @@ public class MainForm {
     public MainForm(Application app) {
         this.app = app;
 
+        resultTable.setRowHeight(50);
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
