@@ -64,9 +64,9 @@ public class DistrictsRepositoryLoader {
             for(int i = 0; i < streetNodes.getLength(); i++)
                 loadStreet((Element) streetNodes.item(i), district);
         } catch (SAXException e) {
-            throw new DistrictLoadingException("SAXException: " + e.getMessage());
+            throw new DistrictLoadingException("SAXException: " + e.getMessage() + "\nFile: " + currentFile);
         } catch (IOException e) {
-            throw new DistrictLoadingException("IOException: " + e.getMessage());
+            throw new DistrictLoadingException("IOException: " + e.getMessage() + "\nFile: " + currentFile);
         }
     }
 
