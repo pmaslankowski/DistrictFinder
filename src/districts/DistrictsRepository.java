@@ -11,7 +11,8 @@ import java.util.regex.Pattern;
 public class DistrictsRepository {
 
     public DistrictsRepository(DistrictsRepositoryLoader loader) {
-        parsePattern = Pattern.compile("(?<street>([a-zA-Z]|\\s)+)(?<number>(\\d+))");
+        parsePattern = Pattern.compile("(?<street>([^\\W\\d]|\\s)+)(?<number>(\\d+))",
+                Pattern.UNICODE_CHARACTER_CLASS);
         this.repository = loader.getRepository();
     }
 
