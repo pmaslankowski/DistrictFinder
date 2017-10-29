@@ -9,10 +9,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -20,16 +17,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class DistrictsRepositoryLoader {
-    public DistrictsRepositoryLoader(URI directoryPath) {
-        this.directoryPath = directoryPath;
+    public DistrictsRepositoryLoader(String districtsListPath) {
+        this.districtsListPath = districtsListPath;
     }
 
     public void load() throws DistrictLoadingException {
         repository = new TreeMap<>();
-        File directory = new File(directoryPath);
-        if(!directory.isDirectory())
-            throw new DistrictLoadingException("Given district directory: " + directoryPath + " is not a directory");
-
         DocumentBuilderFactory buildersFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = null;
         try {
@@ -37,18 +30,34 @@ public class DistrictsRepositoryLoader {
         } catch (ParserConfigurationException e) {
             throw new DistrictLoadingException("Wrong XML parser configuration.\n" + e.getMessage());
         }
-        List<File> districtFiles = Arrays.asList(directory.listFiles());
-
-        for(File districtFile : districtFiles) {
-            if(districtFile.isFile()) {
-                currentFile = districtFile.getName();
-                try (InputStream districtInputStream = Files.newInputStream(Paths.get(districtFile.getPath()))) {
+        
+        try (BufferedReader districtsReader = new BufferedReader(
+                new InputStreamReader(getClass().getResourceAsStream(districtsListPath), "UTF-8"))
+        ) {
+            String currentFile = null;
+            while((currentFile = districtsReader.readLine()) != null) {
+                try (InputStream districtInputStream =
+                             getClass().getResourceAsStream("/data/districts/" + currentFile)) {
+                    if(districtInputStream == null ) {
+                        String msg = String.format(
+                                "Błąd podczas otwierania pliku z opisem dzielnicy: %s. Taki plik nie istnieje.",
+                                currentFile);
+                        throw new DistrictLoadingException(msg);
+                    }
                     loadDistrict(districtInputStream, docBuilder);
                 } catch (IOException e) {
-                    throw new DistrictLoadingException("Error during opening " + districtFile.getPath() +
+                    throw new DistrictLoadingException("Error during opening " + currentFile +
                             " file.\n" + e.getMessage());
                 }
             }
+        } catch (UnsupportedEncodingException e) {
+            String msg = String.format("Nieprawidłowe kodowanie pliku z listą dzielnic.\nPlik: %s\nSzczegóły: %s",
+                    districtsListPath, e.getMessage());
+            throw new DistrictLoadingException(msg);
+        } catch (IOException e) {
+            String msg = String.format("Błąd podczas otwierania pliku z listą dzielnic.\nPlik: %s\nSzczegóły: %s",
+                    districtsListPath, e.getMessage());
+            throw new DistrictLoadingException(e.getMessage());
         }
     }
 
@@ -164,7 +173,7 @@ public class DistrictsRepositoryLoader {
         return result;
     }
 
-    private URI directoryPath;
+    private String districtsListPath;
     private String currentFile;
     private Map<String, List<DistrictEntry>> repository;
 }

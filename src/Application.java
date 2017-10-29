@@ -137,11 +137,11 @@ public class Application {
 
     private void loadDistrictsRepository() {
         try {
-            URI districtsPath = this.getClass().getResource("data/districts/").toURI();
-            DistrictsRepositoryLoader loader = new DistrictsRepositoryLoader(districtsPath);
+            DistrictsRepositoryLoader loader =
+                    new DistrictsRepositoryLoader("/data/districts/districts_paths.txt");
             loader.load();
             districtsRepository = new DistrictsRepository(loader);
-        } catch (DistrictLoadingException | URISyntaxException e) {
+        } catch (DistrictLoadingException e) {
             JOptionPane.showMessageDialog(
                     frame,
                     "Wystąpił błąd podczas ładowania repozytorium dzielnic. Program zakończy swoje działanie.\n" +
@@ -155,11 +155,10 @@ public class Application {
 
     private void loadHospitalsRepository() { ;
         try {
-            URI hospitalsPath = this.getClass().getResource("data/hospitals.xml").toURI();
-            HospitalsRepositoryLoader loader = new HospitalsRepositoryLoader(hospitalsPath);
+            HospitalsRepositoryLoader loader = new HospitalsRepositoryLoader("/data/hospitals.xml");
             loader.load();
             hospitalsRepository = new HospitalsRepository(loader);
-        } catch (HospitalsLoadingException | URISyntaxException e) {
+        } catch (HospitalsLoadingException e) {
             JOptionPane.showMessageDialog(
                     frame,
                     "Wystąpił błąd podczas ładowania repozytorium szpitali. Program zakończy swoje działanie.\n" +

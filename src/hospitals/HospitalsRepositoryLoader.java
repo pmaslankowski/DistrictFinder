@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class HospitalsRepositoryLoader {
-    public HospitalsRepositoryLoader(URI path) {
+    public HospitalsRepositoryLoader(String path) {
         this.path = path;
     }
 
@@ -31,7 +31,7 @@ public class HospitalsRepositoryLoader {
         } catch (ParserConfigurationException e) {
             throw new HospitalsLoadingException("Wrong XML parser configuration.\n" + e.getMessage());
         }
-        try (InputStream inputStream = Files.newInputStream(Paths.get(path))) {
+        try (InputStream inputStream = getClass().getResourceAsStream(path)) {
             loadHospitals(inputStream, builder);
         } catch (IOException e) {
             throw new HospitalsLoadingException("Error during opening " + path + " file.\n" + e.getMessage());
@@ -67,6 +67,6 @@ public class HospitalsRepositoryLoader {
         repository.put(id, new Hospital(id, name, address, phone));
     }
     
-    private URI path;
+    private String path;
     private Map<String, Hospital> repository;
 }
