@@ -38,6 +38,10 @@ public class DistrictsRepository {
         throw new StreetNotFoundException(String.format("Number: %d is not assigned to street: %s", number, street));
     }
 
+    Map<String, List<DistrictEntry>> getRepositoryMap() {
+        return repository;
+    }
+    
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(",\n", "[", "]");
