@@ -12,13 +12,7 @@ import hospitals.exceptions.HospitalsLoadingException;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 public class Application {
     public Application() {
