@@ -31,12 +31,14 @@ public class DistrictsRepository {
     private District get(String street, int number) throws StreetNotFoundException {
         List<DistrictEntry> candidatingDistricts = repository.get(street);
         if (candidatingDistricts == null)
-            throw new StreetNotFoundException("Street: " + street + " not found in districts repository.", street, number);
+            throw new StreetNotFoundException(
+                    "Street: " + street + " not found in districts repository.", street, number, true);
         for (DistrictEntry districtEntry : candidatingDistricts)
             if (districtEntry.containsNumber(number))
                 return districtEntry.getDistrict();
-        throw new StreetNotFoundException(String.format("Number: %d is not assigned to street: %s", number, street),
-                street, number);
+        throw new StreetNotFoundException(
+                String.format("Number: %d is not assigned to street: %s", number, street),
+                street, number, false);
     }
 
     Map<String, List<DistrictEntry>> getRepositoryMap() {

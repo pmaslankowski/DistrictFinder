@@ -76,11 +76,21 @@ public class Application {
                     });
 
                 } catch (StreetNotFoundException e) {
-                    String street = e.getStreet();
-                    int number = e.getNumber();
-                    DistrictsFuzzyFinder finder = new DistrictsFuzzyFinder(districtsRepository);
-                    HintWindow hintWindow = new HintWindow(this, frame, finder, street, number);
-                    form.getResultTable().setModel(emptyModel);
+                    if(e.fuzzyMatching()) {
+                        String street = e.getStreet();
+                        int number = e.getNumber();
+                        DistrictsFuzzyFinder finder = new DistrictsFuzzyFinder(districtsRepository);
+                        HintWindow hintWindow = new HintWindow(this, frame, finder, street, number);
+                        form.getResultTable().setModel(emptyModel);
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                frame,
+                                "Nie znaleziono adresu \"" + address + "\" w repozytorium.\n" +
+                                        "Szczegóły:\n" + e.getMessage(),
+                                "Informacja",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }
                 } catch (InvalidAddressFormatException e) {
                     JOptionPane.showMessageDialog(
                             frame,

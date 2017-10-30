@@ -1,5 +1,5 @@
 <district name="grabiszyn_grabiszynek" label="Grabiszyn - Grabiszynek">
-    <hospital>DOL_SZP_SPEC_MRC</hospital>
+    <hospital>DOL_SZP_SPEC_MARC</hospital>
     <street even-start="82" even-end="196" odd-start="97" odd-end="159">Aleja Generała Hallera</street>
     <street>Aleja Pracy</street>
     <street>Arctowskiego</street>
