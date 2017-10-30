@@ -117,9 +117,9 @@ public class DistrictsRepositoryLoader {
 
         if(evenStart == -1 && evenEnd == -1 && oddStart == -1 && oddEnd == -1 && start == -1 && end == -1
                 && additional.isEmpty())
-            addToRepository(street, new DistrictEntry(district, DistrictEntry.EntryMode.ALL_NUMBERS, null));
+            addToRepository(street, new DistrictEntry(district, street, DistrictEntry.EntryMode.ALL_NUMBERS, null));
         else
-            addToRepository(street, new DistrictEntry(district, DistrictEntry.EntryMode.SPECIFIC_NUMBERS,
+            addToRepository(street, new DistrictEntry(district, street, DistrictEntry.EntryMode.SPECIFIC_NUMBERS,
                     createNumbersSet(street, evenStart, evenEnd, oddStart, oddEnd, start, end, additional)));
     }
 

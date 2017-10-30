@@ -12,9 +12,9 @@ public class DistrictsFuzzyFinder {
         loader.load();
         DistrictsRepository repo = new DistrictsRepository(loader);
         DistrictsFuzzyFinder finder = new DistrictsFuzzyFinder(repo);
-        System.out.println("editDistance(\"Bajana\", \"Bajanqe\") = " + finder.editDistance("Bajana", "Bajanqe"));
-        System.out.println("distance = " + finder.distance("Jerzego Bajana","Bajanqe"));
-        System.out.println(finder.getBestMatches("Hallerq", 31));
+        //System.out.println("editDistance(\"Bajana\", \"Bajanqe\") = " + finder.editDistance("Bajana", "Bajanqe"));
+        //System.out.println("distance = " + finder.distance("Jerzego Bajana","Bajanqe"));
+        System.out.println(finder.getBestMatches("Żeleńskiqego", 31));
     }
     
     public DistrictsFuzzyFinder(DistrictsRepository repository) {
@@ -28,15 +28,23 @@ public class DistrictsFuzzyFinder {
                         .anyMatch(districtEntry -> districtEntry.containsNumber(number)))
                 .filter(listEntry -> distance(listEntry.getKey(), street) <= DISTANCE_THRESHOLD)
                 .limit(MATCHES_LIMIT)
-                .map(entry -> entry.getKey())
+                .map(entry -> entry.getValue().get(0).getStreet() + " " + number)       // very ugly - we know that list is not empty, because anyMatch succeeded earlier
                 .collect(Collectors.toList());
     }
 
     private int distance(String s1, String s2) {
         s1 = s1.toLowerCase();
         s2 = s2.toLowerCase();
-        ArrayList<String> wordsOfS1 = new ArrayList<String>(Arrays.asList(s1.split("\\s|-")));
-        ArrayList<String> wordsOfS2 = new ArrayList<String>(Arrays.asList(s2.split("\\s|-")));
+        ArrayList<String> wordsOfS1 = new ArrayList<String>(
+                Arrays.asList(s1.split("\\s|-")).stream()
+                    .filter(x -> !x.isEmpty())
+                    .collect(Collectors.toList())
+        );
+        ArrayList<String> wordsOfS2 = new ArrayList<String>(
+                Arrays.asList(s2.split("\\s|-")).stream()
+                    .filter(x -> !x.isEmpty())
+                    .collect(Collectors.toList())
+        );
         if(wordsOfS1.size() < wordsOfS2.size())
             return calculateDistance(wordsOfS1, wordsOfS2);
         else

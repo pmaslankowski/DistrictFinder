@@ -1,4 +1,5 @@
 import districts.District;
+import districts.DistrictsFuzzyFinder;
 import districts.DistrictsRepository;
 import districts.DistrictsRepositoryLoader;
 import districts.exceptions.DistrictLoadingException;
@@ -75,13 +76,10 @@ public class Application {
                     });
 
                 } catch (StreetNotFoundException e) {
-                    JOptionPane.showMessageDialog(
-                            frame,
-                            "Nie znaleziono adresu \"" + address + "\" w repozytorium.\n" +
-                                    "Szczegóły:\n" + e.getMessage(),
-                            "Informacja",
-                            JOptionPane.INFORMATION_MESSAGE
-                    );
+                    String street = e.getStreet();
+                    int number = e.getNumber();
+                    DistrictsFuzzyFinder finder = new DistrictsFuzzyFinder(districtsRepository);
+                    HintWindow hintWindow = new HintWindow(this, frame, finder, street, number);
                     form.getResultTable().setModel(emptyModel);
                 } catch (InvalidAddressFormatException e) {
                     JOptionPane.showMessageDialog(
@@ -120,7 +118,7 @@ public class Application {
     }
     
     private void createWindow() {
-        JFrame frame = new JFrame("Wyszukiwanie osiedli i ośrodków POZ");
+        frame = new JFrame("Wyszukiwanie osiedli i ośrodków POZ");
         form = new MainForm(this);
         frame.setContentPane(form.getView());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -162,6 +160,15 @@ public class Application {
             );
             System.exit(-1);
         }
+    }
+
+    public void setAddressAndResolve(String address) {
+        form.getAddressText().setText(address);
+        resolveStreet(address);
+    }
+
+    public void setSearchButtonEnabled(boolean b) {
+        form.getSearchButton().setEnabled(b);
     }
     
     private MainForm form;

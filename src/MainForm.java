@@ -41,4 +41,5 @@ public class MainForm {
     }
     public JTextField getAddressText() { return addressText; }
     public JTable getResultTable() { return resultTable; }
+    public JButton getSearchButton() { return searchButton; }
 }

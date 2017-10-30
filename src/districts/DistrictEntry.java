@@ -5,15 +5,18 @@ import java.util.StringJoiner;
 
 class DistrictEntry {
 
-    public DistrictEntry(District district, EntryMode mode, Set<Integer> numbers) {
+    public DistrictEntry(District district, String street, EntryMode mode, Set<Integer> numbers) {
         this.district = district;
         this.mode = mode;
         this.numbers = numbers;
+        this.street = street;
     }
 
     public District getDistrict() {
         return district;
     }
+
+    public String getStreet() { return street; }
 
     public boolean containsNumber(int houseNumber) {
         return mode == EntryMode.ALL_NUMBERS || numbers.contains(houseNumber); // take care: short-circuiting 
@@ -41,6 +44,7 @@ class DistrictEntry {
     private District district;
     private EntryMode mode;
     private Set<Integer> numbers;
+    private String street;
     
     /* Flag indicating if districts.DistrictEntry concerns all local numbers on given street
           or only specific set of local numbers on that street: */
