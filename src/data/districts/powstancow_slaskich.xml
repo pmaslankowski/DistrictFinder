@@ -35,7 +35,7 @@
     <street even-start="76" even-end="96" odd-start="103" odd-end="119">Sudecka</street>
     <street>Swobodna</street>
     <street even-start="76" even-end="82" odd-start="51" odd-end="79" start="85" end="96">Sztabowa</street>
-    <street even-start="1" even-end="33">Ślężna</street>
+    <street odd-start="1" odd-end="33">Ślężna</street>
     <street>Trwała</street>
     <street>Wandy</street>
     <street>Wielka</street>
